@@ -1,11 +1,16 @@
 import './App.css';
-// import { Router } from 'react-router-dom';
+import Home from './pages/home/home';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import EmployeeList from './pages/employeeList/employeeList';
 
 function App() {
   return (
-    <div className='App'>
-      <p>Test</p>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/employee-list' element={<EmployeeList />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
