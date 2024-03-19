@@ -5,8 +5,5 @@ export default function EmployeeTable() {
     <table id='employee-table' class='display'>
       <p>Employee table</p>
     </table>
-    // <div id='employee-table' class='display'>
-    //   <p>Employee table</p>
-    // </div>
   );
 }
