@@ -39,14 +39,12 @@ export default function Home() {
     const newEmployee = {
       firstName,
       lastName,
-      dateOfBirth,
-      startDate,
-      address: {
-        street,
-        city,
-        state,
-        zipCode,
-      },
+      dateOfBirth: dateOfBirth ? dateOfBirth.toISOString() : null,
+      startDate: startDate ? startDate.toISOString() : null,
+      street,
+      city,
+      state,
+      zipCode,
       department,
     };
     dispatch(addEmployee(newEmployee));
@@ -132,12 +130,14 @@ export default function Home() {
             className='select-menu'
             label='Department'
             options={departmentOptions}
-            onChange={(selectedOption) => setDepartment(selectedOption.value)}
+            onChange={(selectedOption) => setDepartment(selectedOption.label)}
             // placeholder='Select a department'
             value={department}
           />
 
-          <button type='submit'>Save</button>
+          <button className='submit-btn' type='submit'>
+            Save
+          </button>
         </form>
       </div>
     </div>

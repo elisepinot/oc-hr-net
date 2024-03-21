@@ -31,3 +31,15 @@ label {
 .css-b62m3t-container {
   width: 14em;
 }
+
+form {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.submit-btn {
+  margin-top: 24px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
