@@ -1,4 +1,7 @@
 import './home.css';
+// import './ModalWindow.css';
+import '../../components/ModalWindow.css';
+
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -6,6 +9,7 @@ import { addEmployee } from '../../redux/features/employeeSlice';
 import CustomDatePicker from '../../components/DatePicker';
 import CustomSelect from '../../components/DropdownMenu';
 import states from '../../data/states.json';
+import ModalWindow from '../../components/ModalWindow';
 
 export default function Home() {
   const [firstName, setFirstName] = useState('');
@@ -17,6 +21,8 @@ export default function Home() {
   const [state, setState] = useState('');
   const [zipCode, setZipCode] = useState('');
   const [department, setDepartment] = useState('');
+  // const [showModal, setShowModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -57,6 +63,7 @@ export default function Home() {
     setState('');
     setZipCode('');
     setDepartment('');
+    setIsModalOpen(true);
   };
 
   return (
@@ -140,6 +147,9 @@ export default function Home() {
           </button>
         </form>
       </div>
+      <ModalWindow isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        Employee created!
+      </ModalWindow>
     </div>
   );
 }

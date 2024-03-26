@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import EmployeeTable from '../../components/employeeTable';
+import './employeeList.css';
 
 export default function EmployeeList() {
   return (

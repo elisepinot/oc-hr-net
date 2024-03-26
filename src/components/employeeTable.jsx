@@ -1,62 +1,90 @@
 import './employeeTable.css';
 import DataTable from 'react-data-table-component';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 export default function EmployeeTable() {
   const employees = useSelector((state) => state.employees.employees);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredEmployees = employees.filter(
+    (employee) =>
+      employee.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      employee.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      employee.department.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      employee.startDate.includes(searchTerm.toLowerCase()) ||
+      employee.dateOfBirth.includes(searchTerm.toLowerCase()) ||
+      employee.street.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      employee.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      employee.state.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      employee.zipCode.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
 
   const columns = [
     {
       name: 'First Name',
       selector: (row) => row.firstName,
       sortable: true,
+      wrap: true,
+      minWidth: '130px',
     },
     {
       name: 'Last Name',
       selector: (row) => row.lastName,
       sortable: true,
+      wrap: true,
+      minWidth: '130px',
     },
     {
       name: 'Start Date',
       selector: (row) => formatDate(row.startDate),
       sortable: true,
+      wrap: true,
+      minWidth: '130px',
     },
     {
       name: 'Department',
       selector: (row) => row.department,
       sortable: true,
+      wrap: true,
+      minWidth: '140px',
     },
     {
       name: 'Date of Birth',
       selector: (row) => (row.dateOfBirth ? formatDate(row.dateOfBirth) : ''),
       sortable: true,
+      wrap: true,
+      minWidth: '150px',
     },
     {
       name: 'Street',
       selector: (row) => row.street,
       sortable: true,
+      wrap: true,
+      minWidth: '180px',
     },
     {
       name: 'City',
       selector: (row) => row.city,
       sortable: true,
+      wrap: true,
+      minWidth: '120px',
     },
     {
       name: 'State',
       selector: (row) => row.state,
       sortable: true,
+      wrap: true,
+      minWidth: '60px',
     },
     {
       name: 'Zip Code',
       selector: (row) => row.zipCode,
       sortable: true,
+      wrap: true,
+      minWidth: '120px',
     },
   ];
-
-  // const formatDate = (isoString) => {
-  //   const date = new Date(isoString);
-  //   return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-  // };
 
   const formatDate = (isoString) => {
     const date = new Date(isoString);
@@ -93,13 +121,31 @@ export default function EmployeeTable() {
   console.log('Global state', employees);
 
   return (
-    <DataTable
-      columns={columns}
-      data={employees}
-      defaultSortField='firstName'
-      pagination
-      striped
-      customStyles={customStyles}
-    />
+    <>
+      <div className='search-box'>
+        <label className='search-box-label' htmlFor='search'>
+          Search:
+        </label>
+        <input
+          type='text'
+          placeholder='Search employees...'
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        {searchTerm && (
+          <button className='search-box-clear-btn' onClick={() => setSearchTerm('')}>
+            X
+          </button>
+        )}
+      </div>
+      <DataTable
+        columns={columns}
+        data={filteredEmployees}
+        defaultSortField='firstName'
+        pagination
+        striped
+        customStyles={customStyles}
+      />
+    </>
   );
 }

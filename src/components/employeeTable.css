@@ -1,3 +1,28 @@
 .rdt_TableHeadRow .rdt_SortIcon {
   opacity: 1;
 }
+
+.search-box {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  position: relative;
+}
+
+.search-box-label {
+  margin: 0 10px 0 0;
+}
+
+.search-box-clear-btn {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.lnOUep {
+  overflow: visible !important;
+}
