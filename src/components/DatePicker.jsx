@@ -12,7 +12,7 @@ function CustomDatePicker({ initialDate, onChange }) {
     onChange(newDate); // Appelle la fonction onChange passée en props
   };
 
-  return <DatePicker onChange={handleDateChange} value={date} format='MM-dd-y' />;
+  return <DatePicker onChange={handleDateChange} value={date} format='MM-dd-y' locale='en' />;
 }
 
 export default CustomDatePicker;
